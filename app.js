@@ -16,6 +16,16 @@ app.use(cors());
 //below we allow our api to parse incoming JSON requests
 app.use(express.json());
 
+//Import the login routes
+const loginRoutes = require('./routes/login');
+//Use the login routes
+app.use('/api/login', loginRoutes);
+
+//Import the classroom routes
+const classroomRoutes = require('./routes/classroom');
+//Use the classroom routes
+app.use('/api/classrooms', classroomRoutes);
+
 //Test/establish the connection to the database using the link from the .env file
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('Connected to MongoDB'))
